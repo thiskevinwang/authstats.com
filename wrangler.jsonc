@@ -1,0 +1,85 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "authstats-com",
+	"main": "src/worker.ts",
+	"compatibility_date": "2026-05-25",
+	"compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+	"assets": {
+		"binding": "ASSETS",
+		"directory": ".open-next/assets",
+	},
+	"images": {
+		"binding": "IMAGES",
+	},
+	"routes": [
+		{
+			"pattern": "authstats.com",
+			"custom_domain": true,
+		},
+	],
+	"services": [
+		{
+			"binding": "WORKER_SELF_REFERENCE",
+			"service": "authstats-com",
+		},
+	],
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "authstats-prod",
+			"database_id": "a4e22f54-3506-405c-981a-da33a6117bb8",
+			"migrations_dir": "migrations",
+		},
+	],
+	"workflows": [
+		{
+			"name": "authstats-download-etl",
+			"binding": "DOWNLOAD_STATS_WORKFLOW",
+			"class_name": "DownloadStatsWorkflow",
+		},
+	],
+	"triggers": {
+		"crons": ["0 */6 * * *"],
+	},
+	"vars": {
+		"VIEWABLE_REGISTRIES": "npm,pypi,rubygems,packagist,maven,nuget,go,crates,hex,pub,swiftpackageindex",
+	},
+	"env": {
+		"test": {
+			"name": "authstats-com-test",
+			"main": "src/test/worker.ts",
+			"compatibility_date": "2026-05-22",
+			"images": {
+				"binding": "IMAGES",
+			},
+			"services": [
+				{
+					"binding": "WORKER_SELF_REFERENCE",
+					"service": "authstats-com",
+				},
+			],
+			"d1_databases": [
+				{
+					"binding": "DB",
+					"database_name": "authstats-test",
+					"database_id": "a4e22f54-3506-405c-981a-da33a6117bb8",
+					"migrations_dir": "migrations",
+				},
+			],
+			"workflows": [
+				{
+					"name": "authstats-download-etl-test",
+					"binding": "DOWNLOAD_STATS_WORKFLOW",
+					"class_name": "DownloadStatsWorkflow",
+				},
+			],
+			"vars": {
+				"VIEWABLE_REGISTRIES": "npm,pypi,rubygems,packagist,maven,nuget,go,crates,hex,pub,swiftpackageindex",
+			},
+		},
+	},
+	"observability": {
+		"enabled": true,
+	},
+	"upload_source_maps": true,
+}

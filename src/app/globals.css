@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+:root {
+	color-scheme: light;
+	--background: #f5f5f7;
+	--foreground: #1d1d1f;
+	--card: #ffffff;
+	--card-foreground: #1d1d1f;
+	--muted: #e8e8ed;
+	--muted-foreground: #6e6e73;
+	--secondary: #f2f2f5;
+	--secondary-foreground: #1d1d1f;
+	--border: #d2d2d7;
+	--chart-1: #0071e3;
+	--chart-2: #34c759;
+	--chart-3: #ff9f0a;
+	--chart-4: #af52de;
+	--chart-5: #ff375f;
+}
+
+[data-theme="dark"] {
+	color-scheme: dark;
+	--background: #000000;
+	--foreground: #f5f5f7;
+	--card: #161617;
+	--card-foreground: #f5f5f7;
+	--muted: #2c2c2e;
+	--muted-foreground: #a1a1a6;
+	--secondary: #242426;
+	--secondary-foreground: #f5f5f7;
+	--border: #3a3a3c;
+	--chart-1: #0a84ff;
+	--chart-2: #30d158;
+	--chart-3: #ff9f0a;
+	--chart-4: #bf5af2;
+	--chart-5: #ff375f;
+}
+
+@theme inline {
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--color-card: var(--card);
+	--color-card-foreground: var(--card-foreground);
+	--color-muted: var(--muted);
+	--color-muted-foreground: var(--muted-foreground);
+	--color-secondary: var(--secondary);
+	--color-secondary-foreground: var(--secondary-foreground);
+	--color-border: var(--border);
+	--font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+	--font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+
+* {
+	border-color: var(--border);
+}
+
+html {
+	background: var(--background);
+}
+
+body {
+	margin: 0;
+	background: var(--background);
+	color: var(--foreground);
+	font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+}
+
+a {
+	text-underline-offset: 3px;
+}
+
+[data-theme="dark"] .theme-icon-moon {
+	display: none;
+}
+
+[data-theme="dark"] .theme-icon-sun {
+	display: block;
+}

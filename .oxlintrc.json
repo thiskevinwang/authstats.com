@@ -1,0 +1,10 @@
+{
+	"$schema": "./node_modules/oxlint/configuration_schema.json",
+	"ignorePatterns": [".agents/**", ".next/**", ".open-next/**", ".wrangler/**", "cloudflare-env.d.ts", "next-env.d.ts"],
+	"plugins": ["typescript", "unicorn", "oxc", "react", "jsx-a11y", "nextjs", "vitest"],
+	"settings": {
+		"react": {
+			"version": "19.1.7"
+		}
+	}
+}
